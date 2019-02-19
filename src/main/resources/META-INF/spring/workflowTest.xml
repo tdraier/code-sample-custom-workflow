@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="delayedPublishWH" parent="abstractWH" class="org.jahia.modules.workflowTest.JobItemHandler">
+        <property name="workflowProvider" ref="jBPMProvider"/>
+        <property name="name" value="Delayed publish"/>
+    </bean>
+
+
+    <bean name="myWorkflow" class="org.jahia.services.workflow.WorklowTypeRegistration">
+        <property name="type" value="publish"/>
+        <property name="definition" value="delay-publish-workflow"/>
+        <property name="canBeUsedForDefault" value="false"/>
+        <property name="defaultPriority" value="1"/>
+        <property name="permissions" >
+            <map>
+                <entry key="start" value="publication-start"/>
+                <entry key="review" value="publication-review"/>
+            </map>
+        </property>
+        <property name="forms">
+            <map>
+                <entry key="start" value="jnt:advancedPublish"/>
+                <entry key="review" value="jnt:advancedPublish"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
