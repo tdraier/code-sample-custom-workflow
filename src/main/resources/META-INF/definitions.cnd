@@ -2,5 +2,5 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 
 [jnt:advancedPublish] > mix:title
- - date (string,datetimepicker)
+ - date (date,datetimepicker)
 
