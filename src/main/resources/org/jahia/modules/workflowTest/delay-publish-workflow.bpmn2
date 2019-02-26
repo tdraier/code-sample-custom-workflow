@@ -237,7 +237,7 @@
     </bpmn2:sequenceFlow>
     <bpmn2:task id="Task_11" drools:taskName="Lock node" name="Lock Node">
       <bpmn2:incoming>SequenceFlow_25</bpmn2:incoming>
-      <bpmn2:outgoing>SequenceFlow_27</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
       <bpmn2:ioSpecification id="InputOutputSpecification_1">
         <bpmn2:dataInput id="DataInput_2" itemSubjectRef="ItemDefinition_267" name="nodeIds"/>
         <bpmn2:dataInput id="DataInput_3" itemSubjectRef="ItemDefinition_901" name="workspace"/>
@@ -256,7 +256,7 @@
         <bpmn2:targetRef>DataInput_3</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
     </bpmn2:task>
-    <bpmn2:sequenceFlow id="SequenceFlow_27" name="" sourceRef="Task_11" targetRef="Task_12"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_27" name="" sourceRef="Task_1" targetRef="Task_12"/>
     <bpmn2:exclusiveGateway id="ExclusiveGateway_3" name="" gatewayDirection="Converging">
       <bpmn2:incoming>SequenceFlow_36</bpmn2:incoming>
       <bpmn2:incoming>SequenceFlow_34</bpmn2:incoming>
@@ -461,6 +461,28 @@
     <bpmn2:sequenceFlow id="SequenceFlow_11" name="reject" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_4">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_10" language="http://www.java.com/java">return publicationOutcome.equals(&quot;reject&quot;);</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
+    <bpmn2:task id="Task_1" drools:taskName="Delayed publish" name="Test message">
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_27</bpmn2:outgoing>
+      <bpmn2:ioSpecification id="InputOutputSpecification_6">
+        <bpmn2:dataInput id="DataInput_32" itemSubjectRef="ItemDefinition_267" name="nodeIds"/>
+        <bpmn2:dataInput id="DataInput_33" itemSubjectRef="ItemDefinition_901" name="workspace"/>
+        <bpmn2:inputSet id="InputSet_8">
+          <bpmn2:dataInputRefs>DataInput_32</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>DataInput_33</bpmn2:dataInputRefs>
+        </bpmn2:inputSet>
+        <bpmn2:outputSet id="OutputSet_8"/>
+      </bpmn2:ioSpecification>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_33">
+        <bpmn2:sourceRef>nodeIds</bpmn2:sourceRef>
+        <bpmn2:targetRef>DataInput_32</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_34">
+        <bpmn2:sourceRef>workspace</bpmn2:sourceRef>
+        <bpmn2:targetRef>DataInput_33</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
+    </bpmn2:task>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" sourceRef="Task_11" targetRef="Task_1"/>
     <bpmn2:property id="publicationOutcome" itemSubjectRef="ItemDefinition_901"/>
     <bpmn2:property id="nodeId" itemSubjectRef="ItemDefinition_901"/>
     <bpmn2:property id="nodePath" itemSubjectRef="ItemDefinition_901"/>
@@ -567,6 +589,12 @@
         <dc:Bounds height="50.0" width="50.0" x="727.0" y="100.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_38" labelStyle="BPMNLabelStyle_1"/>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_7" bpmnElement="Task_1">
+        <dc:Bounds height="50.0" width="110.0" x="267.0" y="120.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_12" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="11.0" width="56.0" x="294.0" y="139.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_25" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_Task_4">
         <di:waypoint xsi:type="dc:Point" x="86.0" y="225.0"/>
         <di:waypoint xsi:type="dc:Point" x="111.0" y="225.0"/>
@@ -599,10 +627,11 @@
         <di:waypoint xsi:type="dc:Point" x="1350.0" y="225.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_18"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_27" sourceElement="BPMNShape_Task_4" targetElement="BPMNShape_Task_3">
-        <di:waypoint xsi:type="dc:Point" x="246.0" y="225.0"/>
-        <di:waypoint xsi:type="dc:Point" x="271.0" y="225.0"/>
-        <di:waypoint xsi:type="dc:Point" x="296.0" y="225.0"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_27" sourceElement="BPMNShape_Task_7" targetElement="BPMNShape_Task_3">
+        <di:waypoint xsi:type="dc:Point" x="322.0" y="170.0"/>
+        <di:waypoint xsi:type="dc:Point" x="322.0" y="185.0"/>
+        <di:waypoint xsi:type="dc:Point" x="351.0" y="185.0"/>
+        <di:waypoint xsi:type="dc:Point" x="351.0" y="200.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_19"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_28" sourceElement="BPMNShape_Task_3" targetElement="BPMNShape_UserTask_1">
@@ -699,6 +728,12 @@
         <bpmndi:BPMNLabel id="BPMNLabel_40">
           <dc:Bounds height="11.0" width="23.0" x="776.0" y="253.0"/>
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_Task_4" targetElement="BPMNShape_Task_7">
+        <di:waypoint xsi:type="dc:Point" x="191.0" y="200.0"/>
+        <di:waypoint xsi:type="dc:Point" x="191.0" y="145.0"/>
+        <di:waypoint xsi:type="dc:Point" x="267.0" y="145.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_23"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
