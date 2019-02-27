@@ -11,6 +11,8 @@ public class JobItemHandler  extends AbstractWorkItemHandler implements WorkItem
     @Override
     public void executeWorkItem(WorkItem workItem, WorkItemManager workItemManager) {
         System.out.println("xxxx");
+
+        workItemManager.completeWorkItem(workItem.getId(), null);
     }
 
     @Override
