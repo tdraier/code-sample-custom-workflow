@@ -19,6 +19,7 @@
             <map>
                 <entry key="start" value="publication-start"/>
                 <entry key="review" value="publication-review"/>
+                <entry key="bypass timer" value="bypass-timer"/>
             </map>
         </property>
         <property name="forms">
